@@ -6,19 +6,4 @@ const StorageMongoDb = require("./db/StorageMongoDb");
 let User = new UserModel();
 User.open();
 
-const userModel = User.getModel();
-
-const user = new userModel({
-    name: 'Denis',
-    age: 24
-});
-
-user.save()
-    .then(
-        () => {
-            User.getAll()
-                .then(data => console.log(data))
-                .then(() => User.close());
-        }
-    )
-
+User.getById('607321f3d95e408b62724ff9').then(data => console.log(data));

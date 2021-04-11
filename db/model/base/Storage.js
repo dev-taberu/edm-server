@@ -14,6 +14,46 @@ module.exports = class Storage {
         return this.model;
     }
 
+    getById(id) {
+        return new Promise((resolve, reject) => {
+            this.model.findById(id, (err, data) => {
+                if(err)
+                    reject(err);
+                resolve(data);
+            })
+        })
+    }
+
+    updateMany(condition, newData) {
+        return new Promise((resolve, reject) => {
+            this.model.updateMany(condition, newData, (err, data) => {
+                if(err)
+                    reject(err);
+                resolve(data);
+            })
+        })
+    }
+
+    findOne(condition) {
+        return new Promise((resolve, reject) => {
+            this.model.findOne(condition, (err, data) => {
+                if(err)
+                    reject(err);
+                resolve(data);
+            })
+        })
+    }
+
+    findAll(condition) {
+        return new Promise((resolve, reject) => {
+            this.model.find(condition, (err, data) => {
+                if(err)
+                    reject(err);
+                resolve(data);
+            })
+        })
+    }
+
     getAll() {
         return new Promise((resolve, reject) => {
             this.model.find({}, (err, data) => {
@@ -26,7 +66,7 @@ module.exports = class Storage {
 
     open() {
         mongoose.connect(this.getConnectionString(), {useNewUrlParser: true});
-        this.model = mongoose.model(this.modelName, new Schema(this.schema));
+        this.model = mongoose.model(this.modelName, new Schema(this.schema, {versionKey: false}));
     }
 
     close() {
