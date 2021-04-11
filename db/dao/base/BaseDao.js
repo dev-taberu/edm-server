@@ -2,7 +2,7 @@ const config = require('../../../config.json').db;
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-module.exports = class Storage {
+module.exports = class BaseDao {
 
     constructor(modelName, schema) {
         this.modelName = modelName;
@@ -65,7 +65,7 @@ module.exports = class Storage {
     }
 
     open() {
-        mongoose.connect(this.getConnectionString(), {useNewUrlParser: true});
+        mongoose.connect(this.getConnectionString(), {useNewUrlParser: true, useUnifiedTopology: true});
         this.model = mongoose.model(this.modelName, new Schema(this.schema, {versionKey: false}));
     }
 
