@@ -4,7 +4,8 @@
   "description": "Server for Electronic Document Management system",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/dev-taberu/edm-server/issues"
   },
-  "homepage": "https://github.com/dev-taberu/edm-server#readme"
+  "homepage": "https://github.com/dev-taberu/edm-server#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.3",
+    "pg": "^8.5.1",
+    "pg-dao": "^0.8.6"
+  },
+  "devDependencies": {
+    "typecript": "0.0.1-security"
+  }
 }
